@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -10,12 +13,17 @@ public class Main {
               "        \"-a   Adds a new task\"\n" +
               "        \"-r   Removes a task\"\n" +
               "        \"-c   Completes a task\"");
+
     } else if (args[0].equals("-l")) {
       TaskHandler listTasks = new TaskHandler();
       listTasks.listTheTasks();
-      //print out the list 'function'
     } else if (args[0].equals("-a")) {
-      //add nem task to the list 'function'
+      TaskHandler addNewTask = new TaskHandler();
+      List<String> newTaskAdded = new ArrayList<>();
+      for (int i = 0; i < args.length; i++) {
+        newTaskAdded.add(args[i]);
+      }
+      addNewTask.addNewTask(newTaskAdded);
     } else if (args[0].equals("-r")) {
       //remove a task from the list 'function'
     } else if (args[0].equals("-c")) {
