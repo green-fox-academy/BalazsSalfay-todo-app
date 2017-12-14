@@ -20,10 +20,21 @@ public class TaskHandler {
 
   public void addNewTask(List<String> newTask) {
     try {
-      Path filePath = Paths.get("todo.txt");
-      Files.write(filePath, newTask, StandardOpenOption.APPEND);
+      if (newTask.size() != 0) {
+        Path filePath = Paths.get("todo.txt");
+        Files.write(filePath, newTask, StandardOpenOption.APPEND);
+      } else {
+        System.out.println("Unable to add: no task provided");
+      }
     } catch (Exception e) {
       System.out.println("Unable to write file: todo.txt");
+    }
+  }
+
+  public void removeTask() {
+    try {
+      Path filePath = Paths.get("todo.txt");
+      
     }
   }
 

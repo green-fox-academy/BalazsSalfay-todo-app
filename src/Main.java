@@ -20,7 +20,7 @@ public class Main {
     } else if (args[0].equals("-a")) {
       TaskHandler addNewTask = new TaskHandler();
       List<String> newTaskAdded = new ArrayList<>();
-      for (int i = 0; i < args.length; i++) {
+      for (int i = 1; i < args.length; i++) {
         newTaskAdded.add(args[i]);
       }
       addNewTask.addNewTask(newTaskAdded);
