@@ -1,4 +1,3 @@
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,29 +6,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskHandler {
-  Path filePath = Paths.get("todo.txt");
-  List<String> todolist = new ArrayList<>();
+  private Path filePath = Paths.get("todo.txt");
+  private List<String> todolist = new ArrayList<>();
 
   public void listTheTasks(String[] args) {
     try {
-      if (todolist.size() != 0) {
-        for (int i = 0; i < todolist.size(); i++) {
-          System.out.println(i + 1 + " - " + todolist.get(i));
-        }
-      } else {
+      List<String> taskList = Files.readAllLines(filePath);
+      if (taskList.size() <= 0) {
         System.out.println("No todos for today! :)");
+      } else {
+        for (int i = 0; i < taskList.size(); i++) {
+          System.out.println(i + 1 + " - " + taskList.get(i));
+        }
       }
-    } catch (Exception e) {
-      System.out.println("Unable to read file: todo.txt");
+    } catch(Exception e) {
+        System.out.println("Unable to read file: todo.txt");
     }
   }
 
   public void addNewTask(String[] args) {
-    for (int i = 0; i < args.length; i++) {
-      todolist.add(String.valueOf(i));
+    for (int i = 1; i < args.length; i++) {
+      todolist.add(String.valueOf(args[i]));
     }
     try {
-      if (args.length <= 0) {
+      if (args.length > 0) {
         Files.write(filePath, todolist, StandardOpenOption.APPEND);
       } else {
         System.out.println("Unable to add: no task provided");
@@ -56,7 +56,7 @@ public class TaskHandler {
       } catch (Exception e) {
         System.out.println("Unable to write: todo.txt");
       }
-    } catch (Exception em) {
+    } catch (Exception e2) {
       System.out.println("Unable to remove: index is not a number");
     }
   }
