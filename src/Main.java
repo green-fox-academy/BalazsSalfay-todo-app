@@ -10,13 +10,15 @@ public class Main {
               "        \"-a   Adds a new task\"\n" +
               "        \"-r   Removes a task\"\n" +
               "        \"-c   Completes a task\"");
-    } else if (args[0] == "-l") {
+    } else if (args[0].equals("-l")) {
+      TaskHandler listTasks = new TaskHandler();
+      listTasks.listTheTasks();
       //print out the list 'function'
-    } else if (args[0] == "-a") {
+    } else if (args[0].equals("-a")) {
       //add nem task to the list 'function'
-    } else if (args[0] == "-r") {
+    } else if (args[0].equals("-r")) {
       //remove a task from the list 'function'
-    } else if (args[0] == "-c") {
+    } else if (args[0].equals("-c")) {
       //complete a task 'function'
     }
 
